@@ -64,7 +64,7 @@ public class RadioTest {
     @Test
     public void shouldPrevRadioStationsBelowMin() {
         Radio radio = new Radio();
-        radio.setPrev(-1);
+        radio.setPrev(-2);
         int expected = 9;
         int actual = radio.getCurrentRadioStation();
         Assertions.assertEquals(expected, actual);
