@@ -4,6 +4,18 @@ public class Radio {
     //текущая радио станция
     private int currentRadioStation;
     private int currentVolume;
+    private int maxRadioStation = 10;
+    private int minRadioStation = 0;
+    private int minLevelVolume = 0;
+    private int maxLevelVolume = 100;
+
+    public Radio(int totalNumberRadioStation) {
+        this.maxRadioStation = totalNumberRadioStation - 1;
+    }
+
+    public Radio() {
+    }
+
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -14,10 +26,10 @@ public class Radio {
     }
 
     public void setSelectionRadioStation(int newCurrentRadio) {
-        if (newCurrentRadio <= 0) {
+        if (newCurrentRadio <= minRadioStation) {
             return;
         }
-        if (newCurrentRadio > 9) {
+        if (newCurrentRadio > maxRadioStation) {
             return;
         }
 
@@ -25,14 +37,14 @@ public class Radio {
     }
 
     public void setToMaxRadioStation() {
-        currentRadioStation = 9;
+        currentRadioStation = maxRadioStation;
     }
 
     public void setLevelVolume(int newLevelVolume) {
-        if (newLevelVolume <= 0) {
+        if (newLevelVolume <= minLevelVolume) {
             return;
         }
-        if (newLevelVolume > 10) {
+        if (newLevelVolume > maxLevelVolume) {
             return;
         }
 
@@ -40,39 +52,39 @@ public class Radio {
     }
 
     public void setToMaxLevelVolume() {
-        currentVolume = 10;
+        currentVolume = maxLevelVolume;
     }
 
     public void nextStation() {
 
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < maxRadioStation) {
             currentRadioStation = currentRadioStation + 1;
-        }
-        else { currentRadioStation = 0;
+        } else {
+            currentRadioStation = 0;
         }
     }
 
     public void prevStation() {
-        if (currentRadioStation > 0) {
+        if (currentRadioStation > minRadioStation) {
             currentRadioStation = currentRadioStation - 1;
-        }
-        else { currentRadioStation = 9;
+        } else {
+            currentRadioStation = maxRadioStation;
         }
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxLevelVolume) {
             currentVolume = currentVolume + 1;
-        }
-        else { currentVolume = 10;
+        } else {
+            currentVolume = maxLevelVolume;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minLevelVolume) {
             currentVolume = currentVolume - 1;
-        }
-        else { currentVolume = 0;
+        } else {
+            currentVolume = minLevelVolume;
         }
     }
 }
